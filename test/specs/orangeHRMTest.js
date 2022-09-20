@@ -1,6 +1,9 @@
 const LoginPage = require('../pageobjects/login.page');
 const PimPage = require('../pageobjects/pim.page');
 const AdminPage = require('../pageobjects/admin.page');
+const JobPage = require('../pageobjects/job.page');
+
+
 
 
 describe('H&R management app', () => {
@@ -31,7 +34,7 @@ describe('H&R management app', () => {
         await AdminPage.viewJobTitles();
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
-        await AdminPage.addJobTitle();
+        await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
         
