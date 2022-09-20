@@ -37,7 +37,7 @@ describe('H&R management app', () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
-        
+        await JobPage.saveJobTitle();
     })
 });
 

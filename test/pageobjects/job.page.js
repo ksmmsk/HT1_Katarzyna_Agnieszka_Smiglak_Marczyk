@@ -11,35 +11,32 @@ class JobPage extends Page {
     }
 
     get inputJobTitle () {
-        return $('input.oxd-input.oxd-input--active')
+        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/input')
     }
 
     get inputJobDescription () {
-        return $('//textarea');
+        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/textarea')
     }
 
     get inputJobNote () {
-        return $('//textarea[1]')
+        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[4]/div/div[2]/textarea')
     }
 
-    get saveBtn () {
+    get btnSave () {
         return $('button[type="submit"]');
-    }
-
-    async viewJobTitles () {
-        await this.menuJob.click();
-        await this.menuJobTitles.click();
     }
 
     async addJobTitle () {
         await this.btnAdd.click();
     }
 
-    
+    async saveJobTitle () {
+        await this.inputJobTitle.setValue('Knight');
+        await this.inputJobDescription.setValue('Test desc');
+        await this.inputJobNote.setValue('Test note');
+        await this.btnSave.click();
+    }
 
 }
-
-
-
 
 module.exports = new JobPage();
