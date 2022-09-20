@@ -3,9 +3,6 @@ const PimPage = require('../pageobjects/pim.page');
 const AdminPage = require('../pageobjects/admin.page');
 const JobPage = require('../pageobjects/job.page');
 
-
-
-
 describe('H&R management app', () => {
 
     before(async () => {
@@ -37,7 +34,12 @@ describe('H&R management app', () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
-        await JobPage.saveJobTitle();
+        const titleToAdd = 'Wizards';
+        await JobPage.saveJobTitle(titleToAdd,'Desc1','Note');
+        const el = await JobPage.isNewTitleAdded(titleToAdd);
+        await expect(el).toExist();
     })
+
+
 });
 

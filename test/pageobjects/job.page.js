@@ -30,13 +30,16 @@ class JobPage extends Page {
         await this.btnAdd.click();
     }
 
-    async saveJobTitle () {
-        await this.inputJobTitle.setValue('Knight');
-        await this.inputJobDescription.setValue('Test desc');
-        await this.inputJobNote.setValue('Test note');
+    async saveJobTitle (title, desc, note) {
+        await this.inputJobTitle.setValue(title);
+        await this.inputJobDescription.setValue(desc);
+        await this.inputJobNote.setValue(note);
         await this.btnSave.click();
     }
 
+    async isNewTitleAdded (title){
+        return $(`div*=${title}`)
+    }
 }
 
 module.exports = new JobPage();
