@@ -1,9 +1,11 @@
 const LoginPage = require('../pageobjects/login.page');
+const PimPage = require('../pageobjects/pim.page');
+const AdminPage = require('../pageobjects/admin.page');
 
 
 describe('H&R management app', () => {
 
-    beforeEach(async () => {
+    before(async () => {
         await LoginPage.open();
       });
       
@@ -18,5 +20,21 @@ describe('H&R management app', () => {
         const loggedInUrl = await browser.getUrl();
         expect(loggedInUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList');
     });
+
+    it('should open the admin panel from the menu', async () => {
+        await PimPage.openAdminPanel();
+        const adminUrl = await browser.getUrl();
+        expect(adminUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers');
+    })
+
+    it('should add new roles', async () => {
+        await AdminPage.viewJobTitles();
+        let newUrl = await browser.getUrl();
+        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+        await AdminPage.addJobTitle();
+        newUrl = await browser.getUrl();
+        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
+        
+    })
 });
 
