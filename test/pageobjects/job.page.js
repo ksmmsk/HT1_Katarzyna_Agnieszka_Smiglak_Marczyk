@@ -50,22 +50,28 @@ class JobPage extends Page {
     }
 
     async clickEditTitle (title){
-        const el = await this.titleElement(title);
-        let tempParentEl = await el.parentElement();
-        tempParentEl = await tempParentEl.parentElement();
-        tempParentEl = await tempParentEl.parentElement();
-        tempParentEl = await tempParentEl.nextElement();
-        const btnEdit = await tempParentEl.$('./div/div/button[2]');
+        const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
+        let btnEdit;
+        for (let elem of allElems) {
+            let html = await elem.getHTML();
+            if (html.includes(title)) {
+                btnEdit = await elem.$('div button:nth-child(2)');
+                break;
+            } 
+        }
         await btnEdit.click();
     }
 
     async clickDelTitle (title){
-        const el = await this.titleElement(title);
-        let tempParentEl = await el.parentElement();
-        tempParentEl = await tempParentEl.parentElement();
-        tempParentEl = await tempParentEl.parentElement();
-        tempParentEl = await tempParentEl.nextElement();
-        const btnDel = await tempParentEl.$('./div/div/button[1]');
+        const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
+        let btnDel;
+        for (let elem of allElems) {
+            let html = await elem.getHTML();
+            if (html.includes(title)) {
+                btnDel = await elem.$('div button:nth-child(1)');
+                break;
+            } 
+        }
         await btnDel.click();
     }
 

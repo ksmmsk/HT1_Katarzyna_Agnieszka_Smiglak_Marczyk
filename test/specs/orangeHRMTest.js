@@ -52,6 +52,7 @@ describe('H&R management app', () => {
         await JobPage.editTitle(editedDesc);
         const el = await JobPage.titleDesc(editedDesc);
         await expect(el).toExist();
+        
     })
 
     it('should delete existing role', async () => {
