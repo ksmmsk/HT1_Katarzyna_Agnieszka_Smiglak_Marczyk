@@ -1,5 +1,5 @@
 class JobData {
-    static TITLE1 = 'Knight';
+    static TITLE1 = 'Wizard';
     static TITLE2 = 'Sorcerer';
     static DESC = 'A description';
     static DESC2 = 'A new description';

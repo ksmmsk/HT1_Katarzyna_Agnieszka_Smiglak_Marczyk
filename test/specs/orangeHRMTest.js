@@ -12,7 +12,7 @@ describe('H&R management app', () => {
         browser.setWindowSize(960, 900);
       });
       
-    it.only('should redirect to the login page', async () => { 
+    it('should redirect to the login page', async () => { 
         const redirectedUrl = await browser.getUrl();
         expect(redirectedUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
     });
@@ -34,7 +34,6 @@ describe('H&R management app', () => {
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
     })
-
 
     it('should add new roles', async () => {
         await JobPage.addJobTitle();
