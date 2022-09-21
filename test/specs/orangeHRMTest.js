@@ -50,9 +50,8 @@ describe('H&R management app', () => {
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe(UrlData.JOBTITLELIST);
         await JobPage.clickEditTitle(JobData.TITLE1);
-        const editedDesc = 'Edited Desc'
-        await JobPage.editTitle(editedDesc);
-        const el = await JobPage.titleDesc(editedDesc);
+        await JobPage.editTitle(JobData.DESC2);
+        const el = await JobPage.titleDesc(JobData.DESC2);
         await expect(el).toExist();
         
     })
