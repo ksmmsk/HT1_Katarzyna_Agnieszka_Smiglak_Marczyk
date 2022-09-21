@@ -2,13 +2,13 @@ const LoginPage = require('../pageobjects/login.page');
 const PimPage = require('../pageobjects/pim.page');
 const AdminPage = require('../pageobjects/admin.page');
 const JobPage = require('../pageobjects/job.page');
+const DeleteTitle = require('../pageobjects/dialogs/delete.dialog');
 
 describe('H&R management app', () => {
     const titleToAdd = 'Sorcerers';
 
     before(async () => {
         await LoginPage.open();
-        
       });
       
     it('should redirect to the login page', async () => { 
@@ -29,10 +29,14 @@ describe('H&R management app', () => {
         expect(adminUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers');
     })
 
-    it('should add new roles', async () => {
+    it('should open the job title page', async () => {
         await AdminPage.viewJobTitles();
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+    })
+
+
+    it('should add new roles', async () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
@@ -44,17 +48,21 @@ describe('H&R management app', () => {
     it('should edit existing roles', async () => {
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
-
-
         await JobPage.clickEditTitle(titleToAdd);
-
         const editedDesc = 'Edited Desc'
         await JobPage.editTitle(editedDesc);
         const el = await JobPage.titleDesc(editedDesc);
         await expect(el).toExist();
-       
     })
 
-
+    it('should delete existing role', async () => {
+        let newUrl = await browser.getUrl();
+        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+        await JobPage.clickDelTitle(titleToAdd);
+        expect(await DeleteTitle.deletionDialog).toBeDisplayed();
+        await DeleteTitle.confirmDeletion();
+        const deleted = await JobPage.doesTitleExist(titleToAdd);
+        expect(deleted).toBeTruthy();
+    })
 });
 

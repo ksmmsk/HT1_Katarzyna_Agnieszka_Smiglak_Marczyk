@@ -41,6 +41,10 @@ class JobPage extends Page {
         return $(`div=${title}`)
     }
 
+    async doesTitleExist(title){
+        return $(`div=${title}`).waitForExist({ timeout : 5000 , reverse : true})
+    }
+
     async titleDesc (desc){
         return $(`div=${desc}`)
     }
