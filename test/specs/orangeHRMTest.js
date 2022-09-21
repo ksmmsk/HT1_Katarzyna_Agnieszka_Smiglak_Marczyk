@@ -5,6 +5,8 @@ const JobPage = require('../pageobjects/job.page');
 const DeleteTitle = require('../pageobjects/dialogs/delete.dialog');
 const { LoginData } = require('../constants/login.data');
 const { JobData } = require('../constants/job.data');
+const { UrlData } = require('../constants/url.data');
+
 
 describe('H&R management app', () => {
     before(async () => {
@@ -20,25 +22,25 @@ describe('H&R management app', () => {
     it('should login with valid credentials', async () => {
         await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
         const loggedInUrl = await browser.getUrl();
-        expect(loggedInUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList');
+        expect(loggedInUrl).toBe(UrlData.LOGGEDINPAGE);
     });
 
     it('should open the admin panel from the menu', async () => {
         await PimPage.openAdminPanel();
         const adminUrl = await browser.getUrl();
-        expect(adminUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers');
+        expect(adminUrl).toBe(UrlData.ADMINPANEL);
     })
 
     it('should open the job title page', async () => {
         await AdminPage.viewJobTitles();
         let newUrl = await browser.getUrl();
-        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+        expect(newUrl).toBe(UrlData.JOBTITLELIST);
     })
 
     it('should add new roles', async () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
-        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
+        expect(newUrl).toBe(UrlData.ADDJOBTITLE);
         await JobPage.saveJobTitle(JobData.TITLE1,JobData.DESC,JobData.NOTE);
         const el = await JobPage.titleElement(JobData.TITLE1);
         await expect(el).toExist();        
@@ -46,7 +48,7 @@ describe('H&R management app', () => {
 
     it('should edit existing roles', async () => {
         let newUrl = await browser.getUrl();
-        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+        expect(newUrl).toBe(UrlData.JOBTITLELIST);
         await JobPage.clickEditTitle(JobData.TITLE1);
         const editedDesc = 'Edited Desc'
         await JobPage.editTitle(editedDesc);
@@ -57,7 +59,7 @@ describe('H&R management app', () => {
 
     it('should delete existing role', async () => {
         let newUrl = await browser.getUrl();
-        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+        expect(newUrl).toBe(UrlData.JOBTITLELIST);
         await JobPage.clickDelTitle(JobData.TITLE1);
         await DeleteTitle.confirmDeletion();
         const deleted = await JobPage.doesTitleExist(JobData.TITLE1);
