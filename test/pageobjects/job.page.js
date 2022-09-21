@@ -71,8 +71,9 @@ class JobPage extends Page {
 
     async editTitle (newDesc){
         await this.inputJobDescription.click()
-        await this.inputJobDescription.doubleClick() //workaround because setValue or clearValue do not work
-        await browser.keys("Delete")
+        await this.inputJobDescription.doubleClick() 
+        await browser.keys(['Control', 'a']); //workaround because setValue or clearValue do not work
+        await browser.keys('Delete')
         await this.inputJobDescription.setValue(newDesc);
         await this.btnSave.click();
     }
