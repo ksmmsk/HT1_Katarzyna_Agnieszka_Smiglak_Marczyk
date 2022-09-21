@@ -9,9 +9,10 @@ const { JobData } = require('../constants/job.data');
 describe('H&R management app', () => {
     before(async () => {
         await LoginPage.open();
+        browser.setWindowSize(960, 900);
       });
       
-    it('should redirect to the login page', async () => { 
+    it.only('should redirect to the login page', async () => { 
         const redirectedUrl = await browser.getUrl();
         expect(redirectedUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
     });
