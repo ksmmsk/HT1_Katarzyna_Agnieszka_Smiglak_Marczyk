@@ -16,31 +16,11 @@ describe('H&R management app', () => {
         browser.setWindowSize(960, 900);
       });
       
-    it('should redirect to the login page', async () => { 
-        allureReporter.addFeature('Redirects towards the login page')
-        const redirectedUrl = await browser.getUrl();
-        expect(redirectedUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-    });
-
-    it('should login with valid credentials', async () => {
-        await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
-        const loggedInUrl = await browser.getUrl();
-        expect(loggedInUrl).toBe(UrlData.LOGGEDINPAGE);
-    });
-
-    it('should open the admin panel from the menu', async () => {
-        await PimPage.openAdminPanel();
-        const adminUrl = await browser.getUrl();
-        expect(adminUrl).toBe(UrlData.ADMINPANEL);
-    })
-
-    it('should open the job title page', async () => {
-        await AdminPage.viewJobTitles();
-        let newUrl = await browser.getUrl();
-        expect(newUrl).toBe(UrlData.JOBTITLELIST);
-    })
 
     it('should add new roles', async () => {
+        await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
+        await PimPage.openAdminPanel();
+        await AdminPage.viewJobTitles();
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe(UrlData.ADDJOBTITLE);
