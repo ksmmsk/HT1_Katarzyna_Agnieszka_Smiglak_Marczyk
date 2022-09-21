@@ -59,7 +59,6 @@ describe('H&R management app', () => {
         let newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
         await JobPage.clickDelTitle(titleToAdd);
-        expect(await DeleteTitle.deletionDialog).toBeDisplayed();
         await DeleteTitle.confirmDeletion();
         const deleted = await JobPage.doesTitleExist(titleToAdd);
         expect(deleted).toBeTruthy();
