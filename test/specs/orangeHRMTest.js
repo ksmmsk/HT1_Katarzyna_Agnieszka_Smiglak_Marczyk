@@ -4,9 +4,11 @@ const AdminPage = require('../pageobjects/admin.page');
 const JobPage = require('../pageobjects/job.page');
 
 describe('H&R management app', () => {
+    const titleToAdd = 'Sorcerers';
 
     before(async () => {
         await LoginPage.open();
+        
       });
       
     it('should redirect to the login page', async () => { 
@@ -34,10 +36,23 @@ describe('H&R management app', () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/saveJobTitle');
-        const titleToAdd = 'Wizards';
         await JobPage.saveJobTitle(titleToAdd,'Desc1','Note');
-        const el = await JobPage.isNewTitleAdded(titleToAdd);
+        const el = await JobPage.titleElement(titleToAdd);
+        await expect(el).toExist();        
+    })
+
+    it('should edit existing roles', async () => {
+        let newUrl = await browser.getUrl();
+        expect(newUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+
+
+        await JobPage.clickEditTitle(titleToAdd);
+
+        const editedDesc = 'Edited Desc'
+        await JobPage.editTitle(editedDesc);
+        const el = await JobPage.titleDesc(editedDesc);
         await expect(el).toExist();
+       
     })
 
 

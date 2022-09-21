@@ -37,8 +37,40 @@ class JobPage extends Page {
         await this.btnSave.click();
     }
 
-    async isNewTitleAdded (title){
-        return $(`div*=${title}`)
+    async titleElement (title){
+        return $(`div=${title}`)
+    }
+
+    async titleDesc (desc){
+        return $(`div=${desc}`)
+    }
+
+    async clickEditTitle (title){
+        const el = await this.titleElement(title);
+        let tempParentEl = await el.parentElement();
+        tempParentEl = await tempParentEl.parentElement();
+        tempParentEl = await tempParentEl.parentElement();
+        tempParentEl = await tempParentEl.nextElement();
+        const btnEdit = await tempParentEl.$('./div/div/button[2]');
+        await btnEdit.click();
+    }
+
+    async clickDelTitle (title){
+        const el = await this.titleElement(title);
+        let tempParentEl = await el.parentElement();
+        tempParentEl = await tempParentEl.parentElement();
+        tempParentEl = await tempParentEl.parentElement();
+        tempParentEl = await tempParentEl.nextElement();
+        const btnDel = await tempParentEl.$('./div/div/button[1]');
+        await btnDel.click();
+    }
+
+    async editTitle (newDesc){
+        await this.inputJobDescription.click()
+        await this.inputJobDescription.doubleClick() //workaround because setValue or clearValue do not work
+        await browser.keys("Delete")
+        await this.inputJobDescription.setValue(newDesc);
+        await this.btnSave.click();
     }
 }
 
