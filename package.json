@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "wdio": "wdio run wdio.conf.js",
+    "allure": "allure open"
   },
   "keywords": [],
   "author": "Katarzyna Agnieszka Smiglak Marczyk",
