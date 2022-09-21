@@ -5,8 +5,13 @@ const JobPage = require('../pageobjects/job.page');
 const DeleteTitle = require('../pageobjects/dialogs/delete.dialog');
 const { LoginData } = require('../constants/login.data');
 const { JobData } = require('../constants/job.data');
+<<<<<<< HEAD
 const { UrlData } = require('../constants/url.data');
 
+=======
+const allureReporter = require('@wdio/allure-reporter').default;
+const allure = require('allure-commandline');
+>>>>>>> 4ef22cb (add allure)
 
 describe('H&R management app', () => {
     before(async () => {
@@ -15,6 +20,7 @@ describe('H&R management app', () => {
       });
       
     it('should redirect to the login page', async () => { 
+        allureReporter.addFeature('Redirects towards the login page')
         const redirectedUrl = await browser.getUrl();
         expect(redirectedUrl).toBe('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
     });
