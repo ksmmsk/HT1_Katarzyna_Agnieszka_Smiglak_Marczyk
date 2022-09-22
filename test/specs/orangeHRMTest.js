@@ -11,7 +11,7 @@ const allureReporter = require('@wdio/allure-reporter').default;
 const allure = require('allure-commandline');
 
 describe('Orange HRM job titles management page', () => {
-    before(async () => {
+    before('Open the relevant page', async () => {
         await LoginPage.open();
         await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
         await PimPage.openAdminPanel();
