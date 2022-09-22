@@ -13,7 +13,6 @@ const allure = require('allure-commandline');
 describe('H&R management app', () => {
     before(async () => {
         await LoginPage.open();
-        browser.setWindowSize(960, 900);
       });
       
 
