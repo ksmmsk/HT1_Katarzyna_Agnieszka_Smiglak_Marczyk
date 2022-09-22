@@ -10,16 +10,16 @@ const { UrlData } = require('../constants/url.data');
 const allureReporter = require('@wdio/allure-reporter').default;
 const allure = require('allure-commandline');
 
-describe('H&R management app', () => {
+describe('Orange HRM job titles management page', () => {
     before(async () => {
         await LoginPage.open();
-      });
-      
-
-    it('should add new roles', async () => {
         await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
         await PimPage.openAdminPanel();
         await AdminPage.viewJobTitles();
+      });
+
+
+    it('should add new roles', async () => {
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe(UrlData.ADDJOBTITLE);

@@ -50,6 +50,7 @@ class JobPage extends Page {
     }
 
     async clickEditTitle (title){
+        await $(`.oxd-table-row.oxd-table-row--with-border`).waitForExist({ timeout : 5000 })
         const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
         let btnEdit;
         for (let elem of allElems) {
@@ -63,6 +64,7 @@ class JobPage extends Page {
     }
 
     async clickDelTitle (title){
+        await $(`.oxd-table-row.oxd-table-row--with-border`).waitForExist({ timeout : 5000 })
         const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
         let btnDel;
         for (let elem of allElems) {
