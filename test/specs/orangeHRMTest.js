@@ -20,28 +20,22 @@ describe('Orange HRM job titles management page', () => {
 
  
 
-    it('should add new roles', async () => {
+    it('should add, edit, and delete roles', async () => {
+        //adding a role
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
         expect(newUrl).toBe(UrlData.ADDJOBTITLE);
         await JobPage.saveJobTitle(JobData.TITLE1,JobData.DESC,JobData.NOTE);
-        const el = await JobPage.titleElement(JobData.TITLE1);
-        await expect(el).toExist();        
-    })
-
-    it('should edit existing roles', async () => {
-        let newUrl = await browser.getUrl();
-        expect(newUrl).toBe(UrlData.JOBTITLELIST);
+        const title = await JobPage.titleElement(JobData.TITLE1);
+        await expect(title).toExist();
+        const desc = await JobPage.titleDesc(JobData.DESC);
+        await expect(desc).toExist();        
+        //editing a role
         await JobPage.clickEditTitle(JobData.TITLE1);
         await JobPage.editTitle(JobData.DESC2);
         const el = await JobPage.titleDesc(JobData.DESC2);
         await expect(el).toExist();
-        
-    })
-
-    it('should delete existing role', async () => {
-        let newUrl = await browser.getUrl();
-        expect(newUrl).toBe(UrlData.JOBTITLELIST);
+        //deleting a role
         await JobPage.clickDelTitle(JobData.TITLE1);
         await DeleteTitle.confirmDeletion();
         const deleted = await JobPage.doesTitleExist(JobData.TITLE1);
