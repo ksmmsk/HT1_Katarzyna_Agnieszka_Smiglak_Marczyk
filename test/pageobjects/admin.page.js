@@ -7,11 +7,11 @@ const Page = require('./page');
 class AdminPage extends Page {
 
     get menuJob () {
-        return $('span=Job');
+        return $$('.oxd-topbar-body-nav-tab-item')[1];
     }
 
     get menuJobTitles () {
-        return $('=Job Titles');
+        return $$('.oxd-topbar-body-nav-tab-link')[0];
 
     }
 
