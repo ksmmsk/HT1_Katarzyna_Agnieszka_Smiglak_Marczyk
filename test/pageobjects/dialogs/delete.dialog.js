@@ -1,6 +1,6 @@
 class DeleteJobTitle {
     get btnConfirmDel() {
-        return $('button=Yes, Delete')
+        return $('button.oxd-button--label-danger.orangehrm-button-margin');
     }
 
     async confirmDeletion(){
