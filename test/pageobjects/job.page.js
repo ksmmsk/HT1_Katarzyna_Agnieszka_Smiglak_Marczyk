@@ -7,19 +7,19 @@ const Page = require('./page');
 class JobPage extends Page {
 
     get btnAdd () {
-        return $('button=Add');
+        return $('div.orangehrm-header-container button');
     }
 
     get inputJobTitle () {
-        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/input')
+        return $('form input');
     }
 
     get inputJobDescription () {
-        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/textarea')
+        return $$('textarea')[0];
     }
 
     get inputJobNote () {
-        return $('/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[4]/div/div[2]/textarea')
+        return $$('textarea')[1];
     }
 
     get btnSave () {
