@@ -18,6 +18,7 @@ describe('Orange HRM job titles management page', () => {
         await AdminPage.viewJobTitles();
       });
 
+ 
 
     it('should add new roles', async () => {
         await JobPage.addJobTitle();
