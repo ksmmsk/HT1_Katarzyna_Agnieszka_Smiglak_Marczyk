@@ -2,7 +2,7 @@
 const Page = require('./page');
 
 /**
- * sub page class for the management page visible after logging in
+ * sub page class for the admin panel page
  */
 class AdminPage extends Page {
 

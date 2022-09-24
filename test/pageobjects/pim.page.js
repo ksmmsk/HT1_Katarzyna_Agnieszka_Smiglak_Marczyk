@@ -2,7 +2,7 @@
 const Page = require('./page');
 
 /**
- * sub page class for the management page visible after logging in
+ * sub page class for the management page visible just after logging in
  */
 class PimPage extends Page {
 
@@ -14,8 +14,5 @@ class PimPage extends Page {
         await this.btnAdmin.click();
     }
 }
-
-
-
 
 module.exports = new PimPage();

@@ -13,7 +13,7 @@ const allure = require('allure-commandline');
 
 describe('Orange HRM job titles management page', () => {
     before('Open the relevant page', async () => {
-        await LoginPage.open();
+        await LoginPage.openMainPage();
         await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
         await PimPage.openAdminPanel();
         await AdminPage.viewJobTitles();

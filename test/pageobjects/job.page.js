@@ -2,7 +2,7 @@
 const Page = require('./page');
 
 /**
- * sub page class for the management page visible after logging in
+ * sub page class for the Job Titles page (Admin -> Job -> Job Titles)
  */
 class JobPage extends Page {
 

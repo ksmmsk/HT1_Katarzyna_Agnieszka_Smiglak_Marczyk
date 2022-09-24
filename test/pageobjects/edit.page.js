@@ -2,7 +2,7 @@
 const Page = require('./page');
 
 /**
- * sub page class for the management page visible after logging in
+ * sub page class for the adding and editing Job Titles page
  */
 class EditPage extends Page {
 
@@ -28,7 +28,7 @@ class EditPage extends Page {
         await this.inputJobNote.setValue(note);
         await this.btnSave.click();
     }
-    
+
     async editTitle (newDesc){
         await this.inputJobDescription.click()
         const currentDesc = await this.inputJobDescription.getValue();
