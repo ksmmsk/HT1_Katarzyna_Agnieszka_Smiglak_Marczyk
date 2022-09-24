@@ -24,7 +24,7 @@ describe('Orange HRM job titles management page', () => {
         //adding a role
         await JobPage.addJobTitle();
         newUrl = await browser.getUrl();
-        expect(newUrl).toBe(UrlData.ADDJOBTITLE);
+        await expect(newUrl).toBe(UrlData.ADDJOBTITLE);
         await JobPage.saveJobTitle(JobData.TITLE1,JobData.DESC,JobData.NOTE);
         const title = await JobPage.titleElement(JobData.TITLE1);
         await expect(title).toExist();
@@ -39,7 +39,7 @@ describe('Orange HRM job titles management page', () => {
         await JobPage.clickDelTitle(JobData.TITLE1);
         await DeleteTitle.confirmDeletion();
         const deleted = await JobPage.doesTitleExist(JobData.TITLE1);
-        expect(deleted).toBeTruthy();
+        await expect(deleted).toBeTruthy();
     })
 });
 

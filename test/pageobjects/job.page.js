@@ -49,39 +49,43 @@ class JobPage extends Page {
         return $(`div=${desc}`)
     }
 
-    async clickEditTitle (title){
-        await $(`.oxd-table-row.oxd-table-row--with-border`).waitForExist({ timeout : 5000 })
+    async btnEditTitle(title){
         const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
-        let btnEdit;
         for (let elem of allElems) {
             let html = await elem.getHTML();
             if (html.includes(title)) {
-                btnEdit = await elem.$('div button:nth-child(2)');
-                break;
+                return await elem.$('div button:nth-child(2)');
             } 
         }
+
+    }
+
+    async btnDelTitle(title){
+        const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
+        for (let elem of allElems) {
+            let html = await elem.getHTML();
+            if (html.includes(title)) {
+                return await elem.$('div button:nth-child(1)');
+            } 
+        }
+    }
+
+    async clickEditTitle (title){
+        const btnEdit = await this.btnEditTitle(title);
         await btnEdit.click();
     }
 
     async clickDelTitle (title){
-        await $(`.oxd-table-row.oxd-table-row--with-border`).waitForExist({ timeout : 5000 })
-        const allElems = await $$('.oxd-table-row.oxd-table-row--with-border')
-        let btnDel;
-        for (let elem of allElems) {
-            let html = await elem.getHTML();
-            if (html.includes(title)) {
-                btnDel = await elem.$('div button:nth-child(1)');
-                break;
-            } 
-        }
+        const btnDel = await this.btnDelTitle(title);
         await btnDel.click();
     }
 
     async editTitle (newDesc){
         await this.inputJobDescription.click()
-        await this.inputJobDescription.doubleClick() 
-        await browser.keys(['Control', 'a']); //workaround because setValue or clearValue do not work
-        await browser.keys('Delete')
+        const currentDesc = await this.inputJobDescription.getValue();
+        const len = currentDesc.length;
+        const backspaces = new Array(len).fill("Backspace");
+        await this.inputJobDescription.setValue(backspaces); 
         await this.inputJobDescription.setValue(newDesc);
         await this.btnSave.click();
     }
