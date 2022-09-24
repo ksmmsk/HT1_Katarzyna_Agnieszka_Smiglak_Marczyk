@@ -10,31 +10,8 @@ class JobPage extends Page {
         return $('div.orangehrm-header-container button');
     }
 
-    get inputJobTitle () {
-        return $('form input');
-    }
-
-    get inputJobDescription () {
-        return $$('textarea')[0];
-    }
-
-    get inputJobNote () {
-        return $$('textarea')[1];
-    }
-
-    get btnSave () {
-        return $('button[type="submit"]');
-    }
-
     async addJobTitle () {
         await this.btnAdd.click();
-    }
-
-    async saveJobTitle (title, desc, note) {
-        await this.inputJobTitle.setValue(title);
-        await this.inputJobDescription.setValue(desc);
-        await this.inputJobNote.setValue(note);
-        await this.btnSave.click();
     }
 
     async titleElement (title){
@@ -78,16 +55,6 @@ class JobPage extends Page {
     async clickDelTitle (title){
         const btnDel = await this.btnDelTitle(title);
         await btnDel.click();
-    }
-
-    async editTitle (newDesc){
-        await this.inputJobDescription.click()
-        const currentDesc = await this.inputJobDescription.getValue();
-        const len = currentDesc.length;
-        const backspaces = new Array(len).fill("Backspace");
-        await this.inputJobDescription.setValue(backspaces); 
-        await this.inputJobDescription.setValue(newDesc);
-        await this.btnSave.click();
     }
 }
 
