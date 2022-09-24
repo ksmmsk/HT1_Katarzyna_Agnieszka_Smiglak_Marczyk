@@ -18,7 +18,7 @@ describe('Orange HRM job titles management page', () => {
     });
 
     it('should add, edit, and delete roles', async () => {
-        allureReporter.addFeature('User path for adding, editing, and then deleting a role')
+        allureReporter.addFeature('User journey for adding, editing, and then deleting a role')
         //adding a role
         AddFacade.addTitle(JobData.TITLE1, JobData.DESC, JobData.NOTE);
         const title = await JobPage.titleElement(JobData.TITLE1);
