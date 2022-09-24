@@ -3,7 +3,7 @@ const DelDialog = require('../pageobjects/dialogs/delete.dialog');
 
 class DeleteFacade {
 
-    async deleteTitle(title){
+    async deleteTitle(title) {
         await JobPage.clickDelTitle(title);
         await DelDialog.confirmDeletion();
     }

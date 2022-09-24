@@ -6,11 +6,11 @@ const Page = require('./page');
  */
 class PimPage extends Page {
 
-    get btnAdmin () {
+    get btnAdmin() {
         return $$('.oxd-main-menu-item')[0];
     }
 
-    async openAdminPanel () {
+    async openAdminPanel() {
         await this.btnAdmin.click();
     }
 }

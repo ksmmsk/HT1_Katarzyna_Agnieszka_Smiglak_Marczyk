@@ -7,7 +7,7 @@ class DeleteJobTitle {
         return $('button.oxd-button--label-danger.orangehrm-button-margin');
     }
 
-    async confirmDeletion(){
+    async confirmDeletion() {
         await this.btnConfirmDel.click();
     }
 }

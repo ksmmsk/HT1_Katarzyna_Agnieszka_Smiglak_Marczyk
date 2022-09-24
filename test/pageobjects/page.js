@@ -1,7 +1,7 @@
 const { UrlData } = require('../constants/url.data');
 module.exports = class Page {
 
-    openMainPage () {
+    openMainPage() {
         return browser.url(UrlData.MAINPAGE);
     }
 }

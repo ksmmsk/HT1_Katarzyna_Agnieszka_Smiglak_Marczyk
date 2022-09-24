@@ -1,5 +1,3 @@
-
-
 const Page = require('./page');
 
 /**
@@ -7,19 +5,19 @@ const Page = require('./page');
  */
 class LoginPage extends Page {
 
-    get inputUsername () {
+    get inputUsername() {
         return $('[name="username"]');
     }
 
-    get inputPassword () {
+    get inputPassword() {
         return $('[name="password"]');
     }
 
-    get btnSubmit () {
+    get btnSubmit() {
         return $('button[type="submit"]');
     }
 
-    async login (username, password) {
+    async login(username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();

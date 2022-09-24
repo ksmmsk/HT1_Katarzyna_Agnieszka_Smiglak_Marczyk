@@ -1,4 +1,3 @@
-
 const Page = require('./page');
 
 /**
@@ -6,24 +5,20 @@ const Page = require('./page');
  */
 class AdminPage extends Page {
 
-    get menuJob () {
+    get menuJob() {
         return $$('.oxd-topbar-body-nav-tab-item')[1];
     }
 
-    get menuJobTitles () {
+    get menuJobTitles() {
         return $$('.oxd-topbar-body-nav-tab-link')[0];
 
     }
 
-    async viewJobTitles () {
+    async viewJobTitles() {
         await this.menuJob.click();
         await this.menuJobTitles.click();
     }
 
-
 }
-
-
-
 
 module.exports = new AdminPage();
