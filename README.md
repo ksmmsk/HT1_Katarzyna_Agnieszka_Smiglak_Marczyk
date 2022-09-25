@@ -8,10 +8,11 @@ Technologies used:
 This test suite was tested on Windows 10 and Linux Mint 21, both with Google Chrome. 
 
 ## Prerequisites
-You need Node.js with npm.
+- Node.js and npm installed
+- Allure reporter requires Java. 
 
 ## Setup
-1. Clone this repository
+1. Clone this repository (`git clone git@github.com:ksmmsk/HT1_Katarzyna_Agnieszka_Smiglak_Marczyk.git`)
 2. Navigate to the main project folder
 3. Install the dependencies with `npm install`
 
