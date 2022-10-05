@@ -10,30 +10,42 @@ const { JobData } = require('../constants/job.data');
 const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('Orange HRM job titles management page', () => {
-    before('Open the relevant page', async () => {
+    before('Login', async () => {
+        await browser.setTimeout({ 'implicit': 5000 })
         await LoginPage.openMainPage();
         await LoginPage.login(LoginData.USER, LoginData.PASSWORD);
-        await PimPage.openAdminPanel();
-        await AdminPage.viewJobTitles();
     });
 
-    it('should add, edit, and delete roles', async () => {
-        allureReporter.addFeature('User journey for adding, editing, and then deleting a role')
-        //adding a role
-        AddFacade.addTitle(JobData.TITLE1, JobData.DESC, JobData.NOTE);
+    beforeEach('Open the relevant page', async () => {
+        await LoginPage.openMainPage();
+        await PimPage.openAdminPanel();
+        await AdminPage.viewJobTitles();
+    })
+
+    it('should add new roles', async () => {
+        await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
         const title = await JobPage.titleElement(JobData.TITLE1);
         await expect(title).toExist();
-        const desc = await JobPage.titleDesc(JobData.DESC);
+        const desc = await JobPage.titleDesc(JobData.DESC1);
         await expect(desc).toExist();
-        //editing a role
-        EditFacade.editTitle(JobData.TITLE1, JobData.DESC2);
+        await DeleteFacade.deleteTitle(JobData.TITLE1);
+    })
+
+    it.only('should edit existing roles', async () => {
+        await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
+        await EditFacade.editTitle(JobData.TITLE1, JobData.DESC2);
         const editedDesc = await JobPage.titleDesc(JobData.DESC2);
         await expect(editedDesc).toExist();
-        //deleting a role
+        await DeleteFacade.deleteTitle(JobData.TITLE1);
+    })
+
+    it('should delete existing role', async () => {
+        await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
         await DeleteFacade.deleteTitle(JobData.TITLE1);
         const deleted = await JobPage.doesTitleExist(JobData.TITLE1);
         await expect(deleted).toBeTruthy();
     })
 
 });
+
 
