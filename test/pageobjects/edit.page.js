@@ -10,11 +10,11 @@ class EditPage extends Page {
     }
 
     get inputJobDescription() {
-        return $$('textarea')[0];
+        return $(`textarea[placeholder="Type description here"]`)
     }
 
     get inputJobNote() {
-        return $$('textarea')[1];
+        $(`textarea[placeholder="Add note"]`)
     }
 
     get btnSave() {
