@@ -14,7 +14,7 @@ class EditPage extends Page {
     }
 
     get inputJobNote() {
-        $(`textarea[placeholder="Add note"]`)
+        return $(`textarea[placeholder="Add note"]`)
     }
 
     get btnSave() {
