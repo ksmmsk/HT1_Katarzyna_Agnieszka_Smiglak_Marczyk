@@ -23,6 +23,7 @@ describe('Orange HRM job titles management page', () => {
     })
 
     it('should add new roles', async () => {
+        allureReporter.addFeature('Adding a new role')
         await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
         const title = await JobPage.titleElement(JobData.TITLE1);
         await expect(title).toExist();
@@ -30,8 +31,9 @@ describe('Orange HRM job titles management page', () => {
         await expect(desc).toExist();
         await DeleteFacade.deleteTitle(JobData.TITLE1);
     })
-
-    it.only('should edit existing roles', async () => {
+    
+    it('should edit existing roles', async () => {
+        allureReporter.addFeature('Editing a role')
         await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
         await EditFacade.editTitle(JobData.TITLE1, JobData.DESC2);
         const editedDesc = await JobPage.titleDesc(JobData.DESC2);
@@ -40,6 +42,7 @@ describe('Orange HRM job titles management page', () => {
     })
 
     it('should delete existing role', async () => {
+        allureReporter.addFeature('Deleting a role')
         await AddFacade.addTitle(JobData.TITLE1, JobData.DESC1, JobData.NOTE);
         await DeleteFacade.deleteTitle(JobData.TITLE1);
         const deleted = await JobPage.doesTitleExist(JobData.TITLE1);
