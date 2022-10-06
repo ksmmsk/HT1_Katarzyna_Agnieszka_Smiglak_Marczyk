@@ -5,7 +5,7 @@ Technologies used:
 - WebdriverIO
 - Mocha hooks
 - Allure reporter
-This test suite was tested on Windows 10 and Linux Mint 21, both with Google Chrome. 
+This test suite was tested on Windows 10 (English with Google Chrome Version 105.0.5195.127) and Linux Mint 21 (English with Google Chrome Version 105.0.5195.125). 
 
 ## Prerequisites
 - Node.js and npm installed
